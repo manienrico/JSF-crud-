@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>User Details</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:form>
+                <h2><h:outputText value="User Records" /></h2>
+                <br/>
+                <h:dataTable binding="#{table}" value="#{user.usersList()}" var="u">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{table.rowIndex+1}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">User Name</f:facet>
+                        <h:outputText value="#{u.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email ID</f:facet>
+                        <h:outputText value="#{u.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Password</f:facet>
+                        <h:outputText value="#{u.password}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Gender</f:facet>
+                        <h:outputText value="#{user.getGenderName(u.gender)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        <h:outputText value="#{(u.address)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Update</f:facet>
+                        <h:commandButton value="Update" action="#{user.findStudentById(u.id)}">
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Delete</f:facet>
+                        <h:commandButton value="Delete" action="#{user.delete(u.id)}"></h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                <center>
+                    <h:commandButton value="Create New User" action="create.xhtml"></h:commandButton>
+                </center>
+            </h:form>
+        </center>
+        
+        
+    </h:body>
+</html>
+
